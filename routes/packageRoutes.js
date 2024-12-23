@@ -6,14 +6,15 @@ import {
   deletePackage,
   getPackageById,
 } from "../controllers/packageController.js";
-import verifyAdmin from "../middlewares/authMiddleware.js";
+import { verifyAdminToken } from "../services/adminService.js";
+
 
 const router = express.Router();
 
 router.get("/", getPackages);
 router.get("/:id", getPackageById);
-router.post("/", verifyAdmin, createPackage);
-router.put("/:id", verifyAdmin, updatePackage);
-router.delete("/:id", verifyAdmin, deletePackage);
+router.post("/", verifyAdminToken, createPackage);
+router.put("/:id", verifyAdminToken, updatePackage);
+router.delete("/:id", verifyAdminToken, deletePackage);
 
 export default router;

@@ -1,17 +1,7 @@
-import {
-  findUserByEmail,
-  verifyPassword,
-  generateJwtToken,
-  generateOtp,
-  sendOtpToEmail,
-  verifyOtp,
-  clearOtp,
-  updateUserPassword,
-  createUser,
-  verifyUserEmail,
-} from "../services/authService.js";
+import {findUserByEmail, verifyPassword, generateJwtToken, generateOtp, sendOtpToEmail, verifyOtp,clearOtp,updateUserPassword,createUser,  verifyUserEmail} from "../services/authService.js";
 import { configDotenv } from "dotenv";
 configDotenv();
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -51,7 +41,7 @@ export const verifyOtpHandler = async (req, res) => {
   const isOtpValid = await verifyOtp(email, otp);
   const token = generateJwtToken({ email: email, otp: otp }, process.env.JWT_SECRET, "1h");
   if (isOtpValid) {
-    return res.json({ message: "OTP verified successfully", otpToken: token });
+    return res.status(200).json({ message: "OTP verified successfully", otpToken: token });
   } else {
     return res.status(400).json({ message: "Invalid OTP" });
   }

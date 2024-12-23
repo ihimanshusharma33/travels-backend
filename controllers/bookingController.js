@@ -10,9 +10,10 @@ export const createBooking = async (req, res) => {
 };
 
 export const getBookings = async (req, res) => {
+  console.log('getBookings hit');
   try {
     const bookings = await bookingService.getAllBookings();
-    res.json(bookings);
+    res.status(200).json(bookings);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

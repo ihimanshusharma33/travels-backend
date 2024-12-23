@@ -28,9 +28,7 @@ const verifyToken = async(req, res, next) => {
 export const VerifyOtpToken = async(req, res, next) => {
   const token = req.headers['otptoken'];
   if (!token) {
-    return res
-      .status(403)
-      .json({ message: "Access denied. No token provided." });
+    return res.status(403).json({ message: "Access denied. No token provided." });
   }
 
   try {

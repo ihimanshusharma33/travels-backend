@@ -1,5 +1,5 @@
 
-
+import Package from "../models/Package.js";
 const getAllPackages = async () => {
   return await Package.find();
 };

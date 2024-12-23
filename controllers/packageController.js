@@ -3,7 +3,7 @@ import packageService from "../services/packageService.js";
 export const getPackages = async (req, res) => {
   try {
     const packages = await packageService.getAllPackages();
-    res.json(packages);
+    res.status(200).json(packages);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -24,7 +24,7 @@ export const updatePackage = async (req, res) => {
       req.params.id,
       req.body
     );
-    res.json(updatedPackage);
+    res.status(200).json(updatedPackage);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -33,7 +33,7 @@ export const updatePackage = async (req, res) => {
 export const deletePackage = async (req, res) => {
   try {
     await packageService.deletePackage(req.params.id);
-    res.json({ message: "Package deleted successfully" });
+    res.status(200).json({ message: "Package deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -47,7 +47,7 @@ export const getPackageById = async (req, res) => {
         return res.status(404).json({ error: "Package not found" });
       }
   
-      res.json(packageDetail);
+      res.status(200).json(packageDetail);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
