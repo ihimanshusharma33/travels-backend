@@ -17,7 +17,6 @@ export const verifyAdminToken = (req, res, next) => {
     if (decoded.username !== ADMIN_USERNAME && decoded.role !== "admin") {
       return res.status(403).json({ message: "Invalid token" });
     }
-    console.log('admin verified');
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
